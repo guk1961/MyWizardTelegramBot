@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.home.mywizard_bot.botapi.handlers.fillingprofile.UserProfileData;
 import ru.home.mywizard_bot.cache.UserDataCache;
 import ru.home.mywizard_bot.service.MainMenuService;
+import ru.home.mywizard_bot.service.ReplyMessagesService;
 
 /**
  * @author Sergei Viacheslaev
@@ -21,6 +22,7 @@ public class TelegramFacade {
     private BotStateContext botStateContext;
     private UserDataCache userDataCache;
     private MainMenuService mainMenuService;
+    private ReplyMessagesService messagesService;
 
     public TelegramFacade(BotStateContext botStateContext, UserDataCache userDataCache, MainMenuService mainMenuService) {
         this.botStateContext = botStateContext;
@@ -68,6 +70,9 @@ public class TelegramFacade {
             case "Помощь":
                 botState = BotState.SHOW_HELP_MENU;
                 break;
+            case "Домой":
+                botState = BotState.SHOW_MAIN_MENU;
+                break;
             default:
                 botState = userDataCache.getUsersCurrentBotState(userId);
                 break;
@@ -96,7 +101,6 @@ public class TelegramFacade {
         } else if (buttonQuery.getData().equals("buttonIwillThink")) {
             callBackAnswer = sendAnswerCallbackQuery("Данная кнопка не поддерживается", true, buttonQuery);
         }
-
         //From Gender choose buttons
         else if (buttonQuery.getData().equals("buttonMan")) {
             UserProfileData userProfileData = userDataCache.getUserProfileData(userId);

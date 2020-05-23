@@ -37,12 +37,18 @@ public class MainMenuService {
         KeyboardRow row1 = new KeyboardRow();
         KeyboardRow row2 = new KeyboardRow();
         KeyboardRow row3 = new KeyboardRow();
+        KeyboardRow row4 = new KeyboardRow();
+
         row1.add(new KeyboardButton("Получить предсказание"));
         row2.add(new KeyboardButton("Моя анкета"));
         row3.add(new KeyboardButton("Помощь"));
+        row4.add(new KeyboardButton("Домой"));
+
         keyboard.add(row1);
         keyboard.add(row2);
         keyboard.add(row3);
+        keyboard.add(row4);
+
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;
     }
@@ -57,6 +63,7 @@ public class MainMenuService {
         if (replyKeyboardMarkup != null) {
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
         }
+        System.out.println("textMessage="+textMessage);
         return sendMessage;
     }
 }

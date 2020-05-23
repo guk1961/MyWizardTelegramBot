@@ -77,8 +77,6 @@ public class AskDestinyHandler implements InputMessageHandler {
 
         return inlineKeyboardMarkup;
     }
-
-
 }
 
 
